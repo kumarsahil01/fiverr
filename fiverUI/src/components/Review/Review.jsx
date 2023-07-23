@@ -11,7 +11,8 @@ const Review= ({review}) => {
       ),
   });
   return (
-    
+    console.log(review),
+    console.log(data),
     <div className="item">
     {isPending?"Loading"?error:"something went wrong":<div className="user">
     { data && data.img && <img
@@ -20,10 +21,10 @@ const Review= ({review}) => {
         }
       />}
       <div className="info">
-        <span>{data.username}</span>
+        <span>{data && data.username}</span>
         <div className="country">
         
-          <span>{data.country}</span>
+          <span>{data && data.country}</span>
         </div>
       </div>
     </div>}
@@ -34,11 +35,11 @@ const Review= ({review}) => {
           .map((item, i) => (
             <img src="/img/star.png" alt="" key={i} />
           ))}
-        <span>{review.star}</span>
+        <span>{review&&  review.star}</span>
       </div>
     
     <p>
-      {review.desc}
+      {review && review.desc}
     </p>
     <div className="helpful">
       <span>Helpful?</span>
@@ -48,9 +49,6 @@ const Review= ({review}) => {
       <span>No</span>
     </div>
   </div>
-
- 
-
 
   );
 };

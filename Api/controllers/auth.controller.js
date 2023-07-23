@@ -34,14 +34,14 @@ export const login = async (req, res, next) => {
       },
       process.env.JWT_KEY
     );
- 
+
     const { password, ...info } = user._doc;
-    res.Cookie("accessToken", token, {
-      httpOnly: true,
-    });
-    
-    res.status(200).send({info,accessToken: token});
-      
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .send(info);
   } catch (err) {
     next(err);
   }

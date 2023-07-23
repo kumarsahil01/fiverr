@@ -2,8 +2,8 @@ import Gig from "../Models/gig.model.js";
 import createError from "../utils/CreateErrors.js";
 
 export const createGig = async (req, res, next) => {
-  if (!req.isSeller)
-    return next(createError(403, "only sellers can create a gig"));
+  // if (!req.isSeller)
+  //   return next(createError(403, "only sellers can create a gig"));
 
   //here to create a new gig
 

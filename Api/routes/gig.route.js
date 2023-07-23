@@ -8,7 +8,7 @@ import {
 import { verifyToken } from "../middleware/jwt.js";
 const router = express.Router();
 
-router.post("/", verifyToken, createGig);
+router.post("/",  createGig);
 router.delete("/:id", verifyToken, deleteGig);
 router.get("/single/:id", getGig);
 router.get("/", getGigs);

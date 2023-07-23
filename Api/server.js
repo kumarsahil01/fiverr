@@ -22,6 +22,12 @@ const connect = async () => {
     console.error(error);
   }
 };
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5175');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 app.use(cookieParser());
 app.use(cors({ origin: "http://127.0.0.1:5173",   credentials: true}));
 app.use(express.json());

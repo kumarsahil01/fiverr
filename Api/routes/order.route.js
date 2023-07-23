@@ -1,9 +1,10 @@
 import express from 'express'
-import  {getOrders,Intent}  from '../controllers/order.controller.js'
 const router =express.Router()
+import  {getOrders,Intent}  from '../controllers/order.controller.js'
+
 import {verifyToken} from '../middleware/jwt.js'
 
 
 router.get('/', verifyToken, getOrders)
-router.post("/create-payment-intent/:id", verifyToken, Intent);
+router.post("/:id", Intent);
 export default router
