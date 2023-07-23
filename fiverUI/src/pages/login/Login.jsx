@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Cookies from "react-cookies";
+import cookies from "react-cookies";
 import "./Login.scss";
 import newRequest from "../../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,8 @@ function Login() {
     e.preventDefault();
     try {
       const res = await newRequest.post("auth/login", { username, password });
-      const accessToken = res.data.accessToken;
-      Cookies.save("accessToken", accessToken);
+      // const accessToken = res.data.accessToken;
+      // cookies.save("accessToken", accessToken);
       localStorage.setItem("currentUser", JSON.stringify(res.data.info));
       navigate("/");
     } catch (err) {

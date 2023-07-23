@@ -27,7 +27,8 @@ const Navbar = () => {
       window.addEventListener("scroll", isActive);
     };
   }, []);
-  const currentuser = JSON.parse(localStorage.getItem("currentUser"));
+  var currentuser = JSON.parse(localStorage.getItem("currentUser"));
+  
 
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>

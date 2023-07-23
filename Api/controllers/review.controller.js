@@ -2,8 +2,9 @@ import createError from "http-errors";
 import Review from "../models/review.model.js";
 import Gig from "../Models/gig.model.js";
 export const createReview = async (req, res, next) => {
+  console.log(req.body);
   if(req.isSeller) next(createError(403, "Seller can not create review"));
-
+  
   const newreview = new Review({
     userId:req.userId,
     gigId:req.body.gigId,
