@@ -3,6 +3,7 @@ import Message from "../models/message.model.js";
 import Conversation from "../models/conversation.model.js";
 
 export const createMessage = async (req, res, next) => {
+  console.log(req.body.desc)
   const newMessage = new Message({
     conversationId: req.body.conversationId,
     userId: req.userId,
@@ -30,6 +31,7 @@ export const createMessage = async (req, res, next) => {
 export const getMessages = async (req, res, next) => {
   try {
     const messages = await Message.find({ conversationId: req.params.id });
+    console.log(messages)
     res.status(200).send(messages);
   } catch (err) {
     next(err);

@@ -15,10 +15,12 @@ import Message from "./pages/message/Message";
 import Messages from "./pages/messages/Messages";
 import MyGigs from "./pages/myGigs/MyGigs";
 import Orders from "./pages/orders/Orders";
+import Pay from "./pages/pay/Pay";
 
 import "./App.scss";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+
 const queryClient = new QueryClient();
 function App() {
   const Layout = () => {
@@ -74,6 +76,10 @@ function App() {
         {
           path: "/mygigs",
           element: <MyGigs />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Pay />,
         },
         {
           path: "/orders",

@@ -11,7 +11,7 @@ const MessageSchema = new Schema(
       type: String,
       requires: true,
     },
-    Desc: {
+    desc: {
       type: String,
       requires: true,
     },

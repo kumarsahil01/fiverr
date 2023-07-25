@@ -5,6 +5,6 @@ import { verifyToken } from '../middleware/jwt.js';
 const router =express.Router()
  router.post('/',verifyToken,  createReview);
  router.get("/:gigId",getReviews);
- router.get("/:id",deleteReview);
+ router.get("/:id",verifyToken,deleteReview);
 
 export default router

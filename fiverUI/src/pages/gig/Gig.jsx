@@ -4,6 +4,7 @@ import { Slider } from "infinite-react-carousel/lib";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import Reviews from "../../components/Reviews/Reviews";
+import { Link } from "react-router-dom";
 
 function Gig() {
   const { id } = useParams();
@@ -177,7 +178,9 @@ function Gig() {
                 ))}
             </div>
 
+            <Link to={`/pay/${id}`}>
             <button>Continue</button>
+            </Link>
           </div>
         </div>
       )}

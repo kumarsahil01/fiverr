@@ -26,7 +26,7 @@ const Messages = () => {
     mutation.mutate(id);
   };
   return (
-    
+
     <div className="messages">
       {isPending ? (
         "Loading..."
@@ -44,7 +44,7 @@ const Messages = () => {
               <th>Date</th>
               <th>Action</th>
             </tr>
-            
+         
             {data.map((c) => (
               
               <tr className={
@@ -52,8 +52,8 @@ const Messages = () => {
                   (!currentuser.isSeller && !c.readByBuyer)) &&
                 "active"
               } key={c.id}>
-                
-               <td>{ currentuser.isSeller ? c.buyerId : c.sellerId}</td>
+
+               <td>{ c&&  c.buyerId || c.sellerId}</td>
                  
                 <td>
                   <Link to={`/message/${c.id}`} className="link">
@@ -65,6 +65,7 @@ const Messages = () => {
                 {((currentuser.isSeller && !c.readBySeller) ||
                     (!currentuser.isSeller && !c.readByBuyer)) && (
                       <button onClick={() => handleRead(c.id)}>
+                        
                       Mark as Read
                     </button>
                   )}

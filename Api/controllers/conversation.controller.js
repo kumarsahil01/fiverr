@@ -2,6 +2,9 @@ import createError from "../utils/CreateErrors.js";
 import Conversation from "../models/conversation.model.js";
 
 export const createConversation = async (req, res, next) => {
+  if (!req.body.to) {
+    return res.status(400).send("Buyer ID is required.");
+  }
   const newConversation = new Conversation({
     id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,
     sellerId: req.isSeller ? req.userId : req.body.to,
@@ -24,7 +27,7 @@ export const updateConversation = async (req, res, next) => {
       { id: req.params.id },
       {
         $set: {
-          ...(req.isSeller ? { readBySeller: true } : { readByBuyer: true }),
+           ...( { readBySeller: true } || { readByBuyer: true }),
         },
       },
       { new: true }
@@ -37,8 +40,10 @@ export const updateConversation = async (req, res, next) => {
 };
 
 export const getSingleConversation = async (req, res, next) => {
+ 
   try {
     const conversation = await Conversation.findOne({ id: req.params.id });
+    console.log(conversation)
     if (!conversation) return next(createError(404, "Not found!"));
     res.status(200).send(conversation);
   } catch (err) {
@@ -48,9 +53,7 @@ export const getSingleConversation = async (req, res, next) => {
 
 export const getConversations = async (req, res, next) => {
   try {
-    const conversations = await Conversation.find(
-      req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
-    ).sort({ updatedAt: -1 });
+    const conversations = await Conversation.find().sort({ updatedAt: -1 });
     res.status(200).send(conversations);
   } catch (err) {
     next(err);
